@@ -10,11 +10,7 @@ function playGame(playerSelection, computerSelection){
     let cChoice = computerSelection.toUpperCase();
     let result = gameRules(pChoice, cChoice);
 
-
-
     return result;
-
-
 }
 
 function gameRules(playerWeapon, computerWeapon){
@@ -25,7 +21,6 @@ function gameRules(playerWeapon, computerWeapon){
     //Paper < Scissors
     //Paper = Paper
     //Scissors = Scissors
-
 
     let gameResults = ['Win', 'Lose', 'Draw'];
     let weapons = WEAPONS.map(x => x.toUpperCase());

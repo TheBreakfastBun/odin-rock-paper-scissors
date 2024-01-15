@@ -35,28 +35,51 @@ function gameRules(playerWeapon, computerWeapon){
         return gameResults[1]
     else if (playerWeapon === weapons[1] && computerWeapon === weapons[1])
         return gameResults[2]
+    else if (playerWeapon === weapons[1] && computerWeapon === weapons[0])
+        return gameResults[1]
     else if (playerWeapon === weapons[2] && computerWeapon === weapons[2])
         return gameResults[2];
+    else if (playerWeapon === weapons[2] && computerWeapon === weapons[0])
+        return gameResults[1];
+    else if (playerWeapon === weapons[2] && computerWeapon === weapons[1])
+        return gameResults[0];
 }
 
-function game(){
+function game(buttonChoice){
+
+    score.textContent = "";
 
     let iplayer = 0, icomputer = 0;
     for (let x = 0; x < 5; ++x){
         
-        let result = playGame(prompt("Rock, Paper or Scissors?"), getComputerChoice());
+        let result = playGame(buttonChoice, getComputerChoice());
         if (result ===  'Win')
             ++iplayer
         else if (result === 'Lose')
             ++icomputer;
 
-        console.log("You " + result + "!\nPlayer: " + iplayer + "\nComputer: " + icomputer);
+        score.textContent = score.textContent + "\nYou " + result + "!\nPlayer: " + iplayer + "\nComputer: " + icomputer + "\n\n";
     }
 
     if (iplayer > icomputer)
-        console.log("You won the game!")
+        score.textContent = score.textContent + "You won the game!"
     else if (iplayer < icomputer)
-        console.log("You lost the game!")
+        score.textContent = score.textContent + "You lost the game!"
     else
-        console.log("The game is a draw!");
+        score.textContent = score.textContent + "The game is a draw!";
 }
+
+const rock = document.querySelector(".rock");
+const paper = document.querySelector(".paper");
+const scissors = document.querySelector(".scissors");
+const score = document.querySelector(".score");
+
+rock.addEventListener('click',() => {
+    game('Rock');
+})
+paper.addEventListener('click',() => {
+    game('Paper');
+})
+scissors.addEventListener('click',() => {
+    game('Scissors');
+})
